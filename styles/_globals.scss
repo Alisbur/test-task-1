@@ -1,0 +1,11 @@
+body {
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  background-color: $global-bg;
+  font-family: "Lato", "Arial", sans-serif;
+  background-image: url("./../assets/shapes1.svg"), url("./../assets/shapes2.svg"), url("./../assets/dots.svg");
+  background-position: left 5% top 40%, top 70% right 5%, top 10% right;
+  background-repeat: no-repeat;
+
+}

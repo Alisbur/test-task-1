@@ -1,0 +1,44 @@
+.filter-button {
+  color: $color-gray-600;
+  display: flex;
+  padding: 10px 20px;
+  gap: 4px;
+  align-items: flex-start;
+  background-color: $color-white;
+  border: none;
+  transition: all 0.5s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  @media (max-width: $screen-m) {
+    padding: 8px 10px;
+    row-gap: 12px;
+  }
+
+  &_active {
+    border: 1px solid $filter-active-color;
+    border-radius: $border-radius-xs;
+    color: $filter-active-color;
+  }
+
+  &__label {
+    font-size: 16px;
+    line-height: 160%;
+    letter-spacing: 0;
+    font-weight: 700;
+
+    @media (max-width: $screen-m) {
+      font-size: 14px;
+    }
+  }
+
+  &__quantity {
+    font-size: 10px;
+    line-height: 150%;
+    letter-spacing: 0;
+    font-weight: 900;
+  }
+}

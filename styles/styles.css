@@ -1,0 +1,488 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями
+ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Плавный скролл
+   */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  background-color: #FFFFFF;
+  font-family: "Lato", "Arial", sans-serif;
+  background-image: url("./../assets/shapes1.svg"), url("./../assets/shapes2.svg"), url("./../assets/dots.svg");
+  background-position: left 5% top 40%, top 70% right 5%, top 10% right;
+  background-repeat: no-repeat;
+}
+
+.page {
+  margin: 0 auto;
+  padding-top: 50px;
+  line-height: 1;
+  width: 100%;
+  max-width: 1280px;
+  min-width: 320px;
+  padding-inline: 25px;
+}
+@media (max-width: 768px) {
+  .page {
+    padding-inline: 15px;
+  }
+}
+
+.header {
+  display: flex;
+  padding-bottom: 85px;
+  color: #1E212C;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .header {
+    padding-bottom: 45px;
+    row-gap: 16px;
+  }
+}
+.header__title {
+  font-size: 46px;
+  line-height: 130%;
+  letter-spacing: 0;
+  font-weight: 900;
+}
+@media (max-width: 768px) {
+  .header__title {
+    font-size: 34px;
+  }
+}
+.header__subTitle {
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.filter-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+@media (max-width: 1024px) {
+  .filter-bar {
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: flex-start;
+  }
+}
+.filter-bar__buttons-slot {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  color: #9A9CA5;
+  display: flex;
+  padding: 10px 20px;
+  gap: 4px;
+  align-items: flex-start;
+  background-color: #FFFFFF;
+  border: none;
+  transition: all 0.5s;
+}
+.filter-button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+@media (max-width: 768px) {
+  .filter-button {
+    padding: 8px 10px;
+    row-gap: 12px;
+  }
+}
+.filter-button_active {
+  border: 1px solid #FF3F3A;
+  border-radius: 4px;
+  color: #FF3F3A;
+}
+.filter-button__label {
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .filter-button__label {
+    font-size: 14px;
+  }
+}
+.filter-button__quantity {
+  font-size: 10px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-weight: 900;
+}
+
+.search {
+  height: 46px;
+  width: 315px;
+  padding: 14px;
+  border: 1px solid #D7DADD;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #FFFFFF;
+}
+@media (max-width: 1024px) {
+  .search {
+    width: 100%;
+  }
+}
+.search__input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.search__input:-moz-placeholder {
+  color: #D7DADD;
+}
+.search__input:placeholder-shown {
+  color: #D7DADD;
+}
+.search__button {
+  background-color: transparent;
+  border: none;
+  width: 16px;
+  height: 16px;
+  background-image: url("./../assets/search.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.content {
+  width: 100%;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+@media (max-width: 768px) {
+  .content {
+    gap: 60px;
+  }
+}
+
+.cards {
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  row-gap: 30px;
+}
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  outline: 1px solid #E5E8ED;
+  box-shadow: 0px 4px 4px -4px rgba(30, 33, 44, 0.031372549);
+  box-shadow: 0px 12px 10px -6px rgba(154, 156, 165, 0.0392156863);
+  box-shadow: 0px 30px 24px -10px rgba(154, 156, 165, 0.0509803922);
+  box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.0784313725);
+  transition: all 0.5s;
+  background-color: #FFFFFF;
+}
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+.card__content {
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.card__image {
+  width: 100%;
+  aspect-ratio: 39/24;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card__tag {
+  padding: 1px 8px;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: #FFFFFF;
+  border-radius: 4px;
+}
+.card__tag_marketing {
+  background-color: #03CEA4;
+}
+.card__tag_recruiting {
+  background-color: #F89828;
+}
+.card__tag_design {
+  background-color: #F52F6E;
+}
+.card__tag_development {
+  background-color: #7772F1;
+}
+.card__tag_management {
+  background-color: #5A87FC;
+}
+.card__title {
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+.card__data {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  line-height: 150%;
+  letter-spacing: 0;
+}
+.card__data_price {
+  color: #FF4242;
+  font-weight: 700;
+}
+.card__data_divider {
+  width: 1px;
+  height: 16px;
+  background-color: #787A80;
+}
+.card__data_lecturer {
+  color: #787A80;
+  font-weight: 400;
+}
+
+.more-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #424551;
+  transition: opacity 0.5s;
+}
+.more-button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.more-button__icon {
+  width: 24px;
+  height: 24px;
+  background-image: url("./../assets//load-more.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.more-button__label {
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.loader {
+  width: 100%;
+  height: 100px;
+  display: grid;
+  place-content: center;
+}
+.loader__animation {
+  opacity: 0.5;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s ease-in-out infinite;
+}
+.loader__animation_hidden {
+  display: none;
+}/*# sourceMappingURL=styles.css.map */

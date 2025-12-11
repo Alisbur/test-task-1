@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Alisbur">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./styles/styles.css">
+  <title>Test task</title>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <h6 class="header__subTitle">Enjoy your studying!</h6>
+      <h1 class="header__title">Our online courses</h1>
+    </header>
+
+    <nav class="filter-bar">
+      <div class="filter-bar__buttons-slot">
+      </div>
+      <div class="search">
+        <input type="input" class="search__input" placeholder="Search course...">
+        <button type="button" class="search__button" aria-label="Search"></button>
+        <div>
+    </nav>
+
+    <main class="content">
+      <section class="cards" aria-label="Courses">
+      </section>
+
+      <div class="nothing-found">Nothing found</div>
+      <div class="loader"><img src="./assets/load-more.svg" class="loader__animation"></div>
+
+      <button type="button" class="more-button">
+        <img class="more-button__icon" src="./assets/load-more.svg">
+        <p class="more-button__label">Load more</p>
+      </button>
+    </main>
+  </div>
+
+  <template id="filter-button-template-id">
+    <button type="button" class="filter-button">
+      <span class="filter-button__label"></span>
+      <span class="filter-button__quantity"></span>
+    </button>
+  </template>
+
+  <template id="card-template-id">
+    <article class="card">
+      <img src="#" class="card__image" alt="">
+      <div class="card__content">
+        <span class="card__tag"></span>
+        <h3 class="card__title"></h3>
+        <div class="card__data">
+          <span class="card__data_price"></span>
+          <span class="card__data_divider"></span>
+          <span class="card__data_lecturer"></span>
+        </div>
+      </div>
+    </article>
+  </template>
+  <script src="./scripts/Card.js" type="module"></script>
+  <script src="./scripts/constants.js" type="module"></script>
+  <script src="./scripts/index.js" type='module'></script>
+</body>
+
+</html>

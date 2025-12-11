@@ -1,0 +1,16 @@
+.cards {
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 30px;
+  row-gap: 30px;
+
+  @media (max-width: $screen-l) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $screen-s) {
+    grid-template-columns: 1fr;
+  }
+}

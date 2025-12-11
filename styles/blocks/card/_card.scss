@@ -1,0 +1,98 @@
+.card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: $border-radius-xs;
+  outline: 1px solid $card-border-color;
+  box-shadow: 0px 4px 4px -4px #1e212c08;
+  box-shadow: 0px 12px 10px -6px #9a9ca50a;
+  box-shadow: 0px 30px 24px -10px #9a9ca50d;
+  box-shadow: 0px 80px 80px -20px #9a9ca514;
+  transition: all 0.5s;
+  background-color: $color-white;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
+
+  &__content {
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 39/24;
+    object-fit: cover;
+  }
+
+  &__tag {
+    padding: 1px 8px;
+    width: fit-content;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: $color-white;
+    border-radius: $border-radius-xs;
+
+    &_marketing {
+      background-color: $tag-marketing-color;
+    }
+
+    &_recruiting {
+      background-color: $tag-recruiting-color;
+    }
+
+    &_design {
+      background-color: $tag-design-color;
+    }
+
+    &_development {
+      background-color: $tag-development-color;
+    }
+
+    &_management {
+      background-color: $tag-management-color;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0;
+    font-weight: 700;
+  }
+
+  &__data {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0;
+
+    &_price {
+      color: $danger;
+      font-weight: 700;
+    }
+
+    &_divider {
+      width: 1px;
+      height: 16px;
+      background-color: $color-gray-700;
+    }
+
+    &_lecturer {
+      color: $color-gray-700;
+      font-weight: 400;
+    }
+  }
+}

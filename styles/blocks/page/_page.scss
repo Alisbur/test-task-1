@@ -1,0 +1,13 @@
+.page {
+  margin: 0 auto;
+  padding-top: 50px;
+  line-height: 1;
+  width: 100%;
+  max-width: $screen-xl;
+  min-width: 320px;
+  padding-inline: 25px;
+
+  @media (max-width: $screen-m) {
+    padding-inline: 15px;
+  }
+}
