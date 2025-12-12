@@ -18,6 +18,7 @@ const searchInput = document.querySelector(".search__input");
 const nothingFound = document.querySelector(".nothing-found");
 
 toggleLoader(true);
+toggleNothingFound(false);
 const allCards = await getCards();
 toggleLoader(false);
 
